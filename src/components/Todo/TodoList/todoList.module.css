@@ -1,0 +1,41 @@
+.todoList {
+  display: grid;
+  gap: 1rem;
+  list-style-type: none;
+  padding: 0;
+  margin-top: 5rem;
+}
+
+.todoList li {
+  box-shadow: 0 0 10px #3333332C;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todoList li * {
+  padding: 1rem;
+}
+
+.todoList label {
+  flex-grow: 1;
+}
+
+.todoList button {
+  border: none;
+  background: transparent;
+}
+
+.todoList label.done {
+  text-decoration: line-through;
+}
+
+.todoList .remove {
+  color: #ff0000;
+  cursor: pointer;
+}
+
+.todoList .remove:not(.done) {
+  display: none;
+}

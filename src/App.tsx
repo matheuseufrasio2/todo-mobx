@@ -1,14 +1,13 @@
 import { TodoInput } from "./components/Todo/TodoInput";
 import { TodoList } from "./components/Todo/TodoList";
+import { useStore } from "./stores";
 import TodoStore from "./stores/TodoStore";
-
-const todos = new TodoStore();
 
 const App = () => {
   return (
     <div className="app">
-      <TodoInput todos={todos} />
-      <TodoList todos={todos} />
+      <TodoInput />
+      <TodoList />
     </div>
   );
 }

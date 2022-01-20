@@ -1,14 +1,11 @@
 import { observer } from "mobx-react-lite"
-import TodoStore, { Todo } from "../../../stores/TodoStore"
+import { useStore } from "../../../stores";
+import { Todo } from "../../../stores/TodoStore"
 
 import styles from './todoList.module.css';
 
-interface TodoListProps {
-  todos: TodoStore;
-}
-
-export const TodoList = observer(({ todos }: TodoListProps) => {
-
+export const TodoList = observer(() => {
+  const { todos } = useStore()
   const handleToggleTodo = (todo: Todo) => () => {
     todos.toggle(todo);
   }

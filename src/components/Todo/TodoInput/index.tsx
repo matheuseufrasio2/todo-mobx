@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { FormEvent } from "react";
 import TodoStore from "../../../stores/TodoStore";
 
 import styles from "./todoInput.module.css";
@@ -8,25 +8,24 @@ interface TodoListProps {
 }
 
 export const TodoInput = ({ todos }: TodoListProps) => {
-  const [newTodo, setNewTodo] = useState('');
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setNewTodo(e.target.value);
-  }
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
 
-  const handleButtonClick = () => {
-    todos.add(newTodo);
-    setNewTodo("");
+    const formElement = e.target as HTMLFormElement;
+    const formData = new FormData(formElement);
+
+    const value = String(formData.get("todo-input") || "");
+    todos.add(value);
+    formElement.reset();
   }
 
   return (
-    <div className={styles.todoInputGroup}>
-      <input type="text" value={newTodo} onChange={handleInputChange} />
-      <button
-        onClick={handleButtonClick}
-      >
+    <form onSubmit={handleSubmit} className={styles.todoInputGroup}>
+      <input name="todo-input" placeholder="Add todo..." />
+      <button type="submit">
         Add todo
       </button>
-    </div>
+    </form>
   );
 }
